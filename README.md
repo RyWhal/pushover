@@ -47,3 +47,8 @@ I wrote this quick bash script to work with my pushover.sh script. Its set up on
 >if there is less than 25Mb free memory, then send a notification
 
 >if disk space is < 2Gb free, then send a notification
+
+
+more scripts
+============
+The plan is to create more little scripts and things to use with pushover, which I will document as they come along.
