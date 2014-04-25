@@ -38,9 +38,9 @@ Message received!
 <img src="https://cloud.box.com/shared/static/qickjqpsjh9mt8gj0kjw.jpg" alt="Drawing" style="width:100px; height:175px;"/>
 
 
-resources_low
+Resources Low
 =============
-I wrote this quick bash script to work with my pushover.sh script. Its set up on a cron which runs every 15 minutes to notify me about resources either too low or too high.
+resourcesLow.sh is a quick and dirty bash script made to work with my pushover.sh script. Its set up on a cron which runs every 15 minutes to notify me about resources either too low or too high.
 
 >if 15 minute load average is > 1.00 then send a notification
 
@@ -49,6 +49,17 @@ I wrote this quick bash script to work with my pushover.sh script. Its set up on
 >if disk space is < 2Gb free, then send a notification
 
 
+Auth Log Tail
+=============
+Another quick script that works with pushover notifications (pushover.sh). This script continuously tails /var/log/auth.log for authentication failures. If there is an auth failure, a pushover notification is sent via pushover.sh.
+
+```
+user@10.10.10.10 ~/Projects/pushover
+ % authLogTail &
+Apr 25 18:09:29 blackholeoftheinternet sshd[24995]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=192.241.117.3  user=root
+```
+
 more scripts
 ============
 The plan is to create more little scripts and things to use with pushover, which I will document as they come along.
+
