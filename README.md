@@ -37,3 +37,13 @@ Message received!
 
 <img src="https://cloud.box.com/shared/static/qickjqpsjh9mt8gj0kjw.jpg" alt="Drawing" style="width: 100px;"/>
 
+
+resources_low
+=============
+I wrote this quick bash script to work with my pushover.sh script. Its set up on a cron which runs every 15 minutes to notify me about resources either too low or too high.
+
+>if 15 minute load average is > 1.00 then send a notification
+
+>if there is less than 25Mb free memory, then send a notification
+
+>if disk space is < 2Gb free, then send a notification
