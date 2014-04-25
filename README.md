@@ -35,7 +35,7 @@ ryan@server ~ % ./pushover.sh -m "This is a message! It pushes to my phone" -T "
 
 Message received!
 
-<img src="https://cloud.box.com/shared/static/qickjqpsjh9mt8gj0kjw.jpg" alt="Drawing" style="width: 100px;"/>
+<img src="https://cloud.box.com/shared/static/qickjqpsjh9mt8gj0kjw.jpg" alt="Drawing" style="width:100px; height:175px;"/>
 
 
 resources_low
