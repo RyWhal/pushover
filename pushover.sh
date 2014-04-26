@@ -10,8 +10,8 @@ USAGE: $0 [OPTIONS]
 
 OPTIONS:
   -h   Show this message
-  -t   Define a API token
-  -u   Define a user key
+  -t   Define a API token (if its not hard coded in this file)
+  -u   Define a user key  (if its not hard coded in this file)
   -d   Choose the device
   -m   (required) - your message
   -T   Your message's title, otherwise your app's name is used
@@ -24,7 +24,6 @@ EOF
 
 
 # Default config vars
-#PUSHOVER_URL="https://api.pushover.net/1/messages.json"
 PUSHOVER_URL="https://api.pushover.net/1/messages"
 TOKEN="" #add your pushover API token here
 USER_KEY="" #add your specific user key here
@@ -39,7 +38,7 @@ URL_TITLE=""
 PRIORITY=-1 ##-1=quiet notifications, 1=high priority, 2=requires confirmation
 TIMESTAMP=""
 
-#if there are no varibales print the usage satement
+#if there are no varibales print the usage satement and exit
 if [[ $# -eq 0 ]]
 then
 	usage
@@ -54,28 +53,28 @@ while getopts "ht:d:u:m:T:U:r:p:s:" option; do
 			exit 1
 			;;
 		t)
-			TOKEN=$OPTARG
+			TOKEN="$OPTARG"
 			;;
 		u)
-			USER_KEY=$OPTARG
+			USER_KEY="$OPTARG"
 			;;
 		d)
-			DEVICE=$OPTARG
+			DEVICE="$OPTARG"
 			;;
 		m)
-			MESSAGE=$OPTARG
+			MESSAGE="$OPTARG"
 			;;
 		T)
-			TITLE=$OPTARG
+			TITLE="$OPTARG"
 			;;
 		U)
-			URL=$OPTARG
+			URL="$OPTARG"
 			;;
 		r)
-			URL_TITLE=$OPTARG
+			URL_TITLE="$OPTARG"
 			;;
 		p)
-			PRIORITY=$OPTARG
+			PRIORITY="$OPTARG"
 			#if priority isnt -1,1,or2 set it to 1
 			if ([[ $PRIORITY -ne -1 ]] | [[ $PRIORITY -ne 1 ]] | [[ $PRIORITY -ne 2 ]])
 			then
@@ -83,7 +82,7 @@ while getopts "ht:d:u:m:T:U:r:p:s:" option; do
 			fi
 			;;
 		s)
-			TIMESTAMP=$OPTARG
+			TIMESTAMP="$OPTARG"
 			;;
 		?)
 			#print usage if there is an unknown variable
