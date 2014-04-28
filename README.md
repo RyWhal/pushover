@@ -13,7 +13,7 @@ Usage:
 
 usage string:
 ```
-USAGE: $0 [OPTIONS]
+USAGE: pushover.sh [OPTIONS]
 
 OPTIONS:
   -h   Show this message
