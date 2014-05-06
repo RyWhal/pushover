@@ -35,7 +35,7 @@ ryan@server ~ % ./pushover.sh -m "This is a message! It pushes to my phone" -T "
 
 Message received!
 
-<img src="https://cloud.box.com/shared/static/qickjqpsjh9mt8gj0kjw.jpg" alt="Drawing" width=300px/>
+<img src="http://ryanwhalen.me/static/pushover.png" alt="Drawing" width=300px/>
 
 
 
@@ -43,12 +43,15 @@ Resources Low
 =============
 resourcesLow.sh is a quick and dirty bash script made to work with my pushover.sh script. Its set up on a cron which runs every 15 minutes to notify me about resources either too low or too high.
 
->if 15 minute load average is > 1.00 then send a notification
-
 >if there is less than 25Mb free memory, then send a notification
 
 >if disk space is < 2Gb free, then send a notification
 
+
+The cron:
+```
+*/15 * * * * /bin/resources_low
+```
 
 Auth Log Tail
 =============
@@ -60,7 +63,13 @@ user@10.10.10.10 ~/Projects/pushover
 Apr 25 18:09:29 blackholeoftheinternet sshd[24995]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=192.241.117.3  user=root
 ```
 
-more scripts
+Load Checker
 ============
-The plan is to create more little scripts and things to use with pushover, which I will document as they come along.
+Load checker is set up on a cron to go off once a minute and checks the one minute system load average. If the load avg is greater than 1, it kicks off a loop that checks load every 10 seconds. Everytime load > 1, a full dump of a "top" is logged.
+The script sends a pushover notification when it first detects high load, and again when it recovers.
+
+The cron looks like this so it runs every minute:
+```
+* * * * * /bin/loadchecker.sh
+```
 
