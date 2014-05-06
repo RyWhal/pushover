@@ -42,7 +42,7 @@ then
 	done
 fi
 #remove the lockfile when were done
-rm -f /tmp/loadchecker.lock
+sudo rm -f /tmp/loadchecker.lock
 #end
 
 
