@@ -4,6 +4,8 @@
 #This script checks for high load and messages me if its high and takes a log
 #of the current state of Top
 
+#create a lockfile
+lockfile -r 0 /tmp/loadchecker.lock || exit 1
 
 #Variable declerations:
 
@@ -13,6 +15,7 @@ SLEEP_TIME=10 #set sleep time
 START=`date +%s` #set start epoch time
 DIR="/var/log/loadchecker/LOG_$(date +%m%d_%H%M)" #the directory for TOP
 
+echo $LOADAVG
 #main loop
 #if load is greater than 1; start the loop
 if [[ $LOADAVG -gt 1 ]];
@@ -38,5 +41,8 @@ then
 		sleep $SLEEP_TIME #sleep for 10 seconds and do the loop again.
 	done
 fi
+#remove the lockfile when were done
+rm -f /tmp/loadchecker.lock
 #end
+
 
