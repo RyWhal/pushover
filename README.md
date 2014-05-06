@@ -41,21 +41,12 @@ Message received!
 ## Scripts using pushover
 
 
-### Resources Low
-resourcesLow.sh is a quick and dirty bash script made to work with my pushover.sh script. Its set up on a cron which runs every 15 minutes to notify me about resources either too low or too high.
+### disk space low
+resourcesLow.sh is a quick script to alert via pushover me if disk space is < 2Gb free
 
->if there is less than 25Mb free memory, then send a notification
-
->if disk space is < 2Gb free, then send a notification
-
-
-The cron:
-```
-*/15 * * * * /bin/resources_low
-```
 
 ### Auth Log Tail
-Another quick script that works with pushover notifications (pushover.sh). This script continuously tails /var/log/auth.log for authentication failures. If there is an auth failure, a pushover notification is sent via pushover.sh.
+authlogtail.sh works with pushover notifications (pushover.sh), and continuously tails /var/log/auth.log for authentication failures. If there is an auth failure, a pushover notification is sent via pushover.sh.
 
 ```
 user@10.10.10.10 ~/Projects/pushover
@@ -64,11 +55,18 @@ Apr 25 18:09:29 blackholeoftheinternet sshd[24995]: pam_unix(sshd:auth): authent
 ```
 
 ### Load Checker
-Load checker is set up on a cron to go off once a minute and checks the one minute system load average. If the load avg is greater than 1, it kicks off a loop that checks load every 10 seconds. Everytime load > 1, a full dump of a "top" is logged.
+loadchecker.sh is set up on a cron to go off once a minute and checks the one minute system load average. If the load avg is greater than 1, it kicks off a loop that checks load every 10 seconds. Everytime load > 1, a full dump of a "top" is logged.
 The script sends a pushover notification when it first detects high load, and again when it recovers.
 
-The cron looks like this so it runs every minute:
-```
-* * * * * /bin/loadchecker.sh
-```
 
+### Mem checker
+memchecker.sh is set up like loadchecker.sh. A cron goes off every minute and alerts me if memory is less than 50Mb free. It will send another alert when it recovers.
+
+### The Crons 
+These is my crontab file. These are what I use to initiate these scripts (except authlogtail.sh, that runs in the background)
+
+```
+* 0 * * * /bin/diskspacelow.sh
+* * * * * /bin/loadchecker.sh
+* * * * * /bin/memchecker.sh
+```
