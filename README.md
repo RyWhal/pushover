@@ -62,8 +62,8 @@ The script sends a pushover notification when it first detects high load, and ag
 ### Mem checker
 memchecker.sh is set up like loadchecker.sh. A cron goes off every minute and alerts me if memory is less than 50Mb free. It will send another alert when it recovers.
 
-### The Crons 
-These is my crontab file. These are what I use to initiate these scripts (except authlogtail.sh, that runs in the background). You either need to make sure that your user has access to /tmp to remove the files or run the crons as the root user.
+## The Crons 
+This is my crontab file. These are what I use to initiate these scripts (except authlogtail.sh, that runs in the background). You either need to make sure that your user has access to /tmp to remove the files or run the crons as the root user.
 
 ```
 * 0 * * * /bin/diskspacelow.sh
