@@ -36,7 +36,7 @@ then
 	done
 fi
 #remove the lockfile when were done
-sudo rm -f /tmp/memchecker.lock
+rm -f /tmp/memchecker.lock
 #end
 
 
